@@ -18,12 +18,11 @@ Personal home lab built on VirtualBox to practice real sysadmin skills.
 - Uptime Kuma — uptime monitoring dashboard
 
 ## 🌐 Network
-Host (Windows 10)
-├── ubuntu-server
-│   ├── Adapter 1: NAT (10.0.2.15) — internet
-│   └── Adapter 2: Internal Network (192.168.56.10)
-└── windows-client1
-└── Adapter 1: Internal Network (192.168.56.20)
+| Device | Adapter | Type | IP |
+|---|---|---|---|
+| ubuntu-server | Adapter 1 | NAT | 10.0.2.15 |
+| ubuntu-server | Adapter 2 | Internal Network | 192.168.56.10 |
+| windows-client1 | Adapter 1 | Internal Network | 192.168.56.20 |
 
 ## 📊 Monitoring Dashboard
 
