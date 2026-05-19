@@ -29,13 +29,17 @@ Host (Windows 10)
 
 ![Uptime Kuma](screenshots/uptime-kuma.png)
 
-## 📁 Samba File Server
+## 🖥️ SSH + Samba Server
 
 ![Samba](screenshots/samba.png)
 
-## 🔗 Network Test
+## 🔗 Network Test + Mapped Drive
 
 ![Ping](screenshots/ping.png)
+
+## 📁 Shared Drive on Windows Client
+
+![Samba Drive](screenshots/samba-drive.png)
 
 ## 🛠️ Key commands used
 
