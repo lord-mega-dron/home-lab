@@ -56,7 +56,7 @@ Real home server built on old desktop PC for self-hosting services accessible fr
 ![Cloudflare Tunnel](./screenshots/cloudflare-tunnel.png)
 
 ### Nextcloud mobile — accessible from any network
-![Nextcloud Mobile](./screenshots/nextcloud-mobile.png)
+![Nextcloud Mobile](./screenshots/nextcloud-mobile.jpg)
 
 ## 🔧 Key commands
 
