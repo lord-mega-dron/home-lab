@@ -59,7 +59,58 @@ docker run -d --restart=always -p 3001:3001 \
   -v uptime-kuma:/app/data --name uptime-kuma \
   louislam/uptime-kuma:1
 ```
+## ☁️ Home Server — Real Hardware
 
+Personal home server built on old desktop PC for self-hosting services.
+
+### 🖥️ Hardware
+
+| Component | Spec |
+|-----------|------|
+| CPU | Intel Core 2 Duo |
+| RAM | 8GB |
+| Storage | SSD 232GB (OS) + HDD 149GB + HDD 372GB |
+
+### 🐳 Docker Services
+
+| Service | Port | Description |
+|---------|------|-------------|
+| Nextcloud | 8080 | Self-hosted cloud storage |
+| Pi-hole | 80/53 | Network-wide ad blocking |
+
+### 🗄️ Storage Setup
+
+- HDD1 (`/dev/sda1`) — ext4, mounted at `/mnt/hdd1`, ~149GB
+- HDD2 (`/dev/sdb1`) — ext4, mounted at `/mnt/hdd2`, ~372GB
+- Both disks connected as Nextcloud External Storage with `www-data` ownership
+
+### 🌐 Remote Access
+
+- **Cloudflare Tunnel** — no port forwarding needed (double NAT workaround)
+- **Domain:** `dronhomesrv.top` (registered on Porkbun, DNS on Cloudflare)
+- **HTTPS** — automatic via Cloudflare
+- **DuckDNS** — `dron4ik.duckdns.org` as backup
+
+### 🔧 Key commands used
+
+```bash
+# Nextcloud External Storage
+docker exec -u www-data nextcloud php occ app:enable files_external
+docker exec -u www-data nextcloud php occ files_external:list
+
+# Cloudflare Tunnel
+cloudflared tunnel create homeserver
+cloudflared tunnel route dns homeserver dronhomesrv.top
+sudo cloudflared service install
+
+# Fix HTTPS behind tunnel
+docker exec -u www-data nextcloud php occ config:system:set overwriteprotocol --value=https
+docker exec -u www-data nextcloud php occ config:system:set overwritehost --value=dronhomesrv.top
+
+# Format disks to ext4
+sudo mkfs.ext4 /dev/sda1
+sudo chown -R www-data:www-data /mnt/hdd1
+```
 ## 👤 Author
 
 [lord-mega-dron](https://github.com/lord-mega-dron)
